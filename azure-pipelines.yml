@@ -18,11 +18,10 @@ stages:
     displayName: Build
 
     steps:
-    - task: PythonScript@0
+    - task: Docker@2
       inputs:
-        scriptSource: 'inline'
-        script: 'docker build -t crapi-community .'
-        workingDirectory: 'services/community'
+        command: 'build'
+        Dockerfile: 'services/community/Dockerfile'
 
     # - task: DockerCompose@0
     #   inputs:
