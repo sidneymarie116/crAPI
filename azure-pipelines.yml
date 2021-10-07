@@ -18,13 +18,23 @@ stages:
     displayName: Build
 
     steps:
-    - task: DockerCompose@0
+    - task: Docker@0
+      displayName: Build image
       inputs:
         containerregistrytype: 'Azure Container Registry'
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        dockerComposeFile: '**/docker-compose.yml'
-        action: 'Run a Docker Compose command'
-        tags: |
-                latest
 
+    - task: Docker@0
+      displayName: Push image
+      inputs:
+        azureSubscription: 'AppConsultSandbox-to-Crapi'
+        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+        action: 'Push an image'
+        includeLatestTag: true
+
+    - task: AzureWebAppContainer@1
+      inputs:
+        azureSubscription: 'AppConsultSandbox-to-Crapi'
+        appName: 'sidneycrapi'
+        containers: 'crapi.azurecr.io/exxonmobil/crapi:latest'
