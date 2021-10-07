@@ -18,6 +18,11 @@ stages:
     displayName: Build
 
     steps:
+    - task: PythonScript@0
+      inputs:
+        scriptSource: 'filePath'
+        scriptPath: 'deploy/docker/build-all.sh'
+
     - task: DockerCompose@0
       inputs:
         containerregistrytype: 'Azure Container Registry'
