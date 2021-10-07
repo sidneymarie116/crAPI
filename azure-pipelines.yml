@@ -33,10 +33,9 @@ stages:
         action: 'Push an image'
         imageName: sidneymarie116/crapi:$(Build.BuildId)
         qualifyImageName: true
-        includeLatestTag: true
 
     - task: AzureWebAppContainer@1
       inputs:
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         appName: 'sidneycrapi'
-        containers: 'crapi.azurecr.io/sidneymarie116/crapi:latest'
+        containers: 'crapi.azurecr.io/sidneymarie116/crapi:$(Build.BuildId)'
