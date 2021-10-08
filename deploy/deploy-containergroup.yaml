@@ -1,0 +1,230 @@
+apiVersion: 2019-12-01
+location: southcentralus
+name: crapiContainerGroup2
+properties:
+  imageRegistryCredentials:
+  - server: crapi.azurecr.io
+    username: crapi
+    password: e8dOa4OpdFD/Q9Uxf7F3AMbgq0eGJUmT
+
+  containers:
+  - name: crapi-identity
+    properties:
+      image: crapi.azurecr.io/crapi-identity:latest
+      resources:
+        requests:
+          cpu: 0.8
+          memoryInGb: 0.3
+      environmentVariables:
+      - name: DB_NAME
+        value: crapi
+      - name: DB_USER
+        value: admin
+      - name: DB_PASSWORD
+        value: crapisecretpassword  
+      - name: DB_HOST
+        value: postgresdb  
+      - name: DB_PORT
+        value: 5432  
+      - name: BLOCK_SHELL_INJECTION
+        value: false  
+      - name: JWT_SECRET
+        value: crapi  
+      - name: MAILHOG_HOST
+        value: mailhog  
+      - name: MAILHOG_PORT
+        value: 1025  
+      - name: MAILHOG_DOMAIN
+        value: example.com  
+      - name: SMTP_HOST
+        value: smtp.example.com  
+      - name: SMTP_PORT
+        value: 587  
+      - name: SMTP_EMAIL
+        value: user@example.com  
+      - name: SMTP_PASS
+        value: xxxxxxxxxxxxxx  
+      - name: SMTP_FROM
+        value: no-reply@example.com  
+      - name: SMTP_AUTH
+        value: true  
+      - name: SMTP_STARTTLS
+        value: true  
+      - name: WAIT_HOSTS
+        value: postgresdb:5432,mongodb:27017
+      - name: WAIT_HOSTS_TIMEOUT
+        value: 240  
+      - name: WAIT_SLEEP_INTERVAL
+        value: 5  
+
+  - name: crapi-community
+    properties:
+      image: crapi.azurecr.io/crapi-community:latest
+      resources:
+        requests:
+          cpu: 0.3
+          memoryInGb: 0.2
+      environmentVariables:
+      - name: DB_NAME
+        value: crapi
+      - name: DB_USER
+        value: admin
+      - name: DB_PASSWORD
+        value: crapisecretpassword  
+      - name: DB_HOST
+        value: postgresdb  
+      - name: DB_PORT
+        value: 5432  
+      - name: MONGO_DB_HOST
+        value: mongodb  
+      - name: MONGO_DB_PORT
+        value: 27017  
+      - name: MONGO_DB_NAME
+        value: crapi
+      - name: MONGO_DB_USER
+        value: admin
+      - name: MONGO_DB_PASSWORD
+        value: crapisecretpassword 
+      - name: JWT_SECRET
+        value: crapi  
+      - name: WAIT_HOSTS
+        value: postgresdb:5432,mongodb:27017,crapi-identity:8080  
+      - name: WAIT_HOSTS_TIMEOUT
+        value: 240  
+      - name: WAIT_SLEEP_INTERVAL
+        value: 5   
+      - name: WAIT_AFTER_HOSTS
+        value: 10   
+
+  - name: crapi-workshop
+    properties:
+      image: crapi.azurecr.io/crapi-workshop:latest
+      resources:
+        requests:
+          cpu: 0.3
+          memoryInGb: 0.2
+      environmentVariables:
+      - name: DB_NAME
+        value: crapi
+      - name: DB_USER
+        value: admin
+      - name: DB_PASSWORD
+        value: crapisecretpassword  
+      - name: DB_HOST
+        value: postgresdb  
+      - name: DB_PORT
+        value: 5432  
+      - name: MONGO_DB_HOST
+        value: mongodb  
+      - name: MONGO_DB_PORT
+        value: 27017  
+      - name: MONGO_DB_NAME
+        value: crapi
+      - name: MONGO_DB_USER
+        value: admin
+      - name: MONGO_DB_PASSWORD
+        value: crapisecretpassword 
+      - name: JWT_SECRET
+        value: crapi  
+      - name: WAIT_HOSTS
+        value: crapi-identity:8080,crapi-community:8087,mailhog:1025
+      - name: WAIT_HOSTS_TIMEOUT
+        value: 240  
+      - name: WAIT_SLEEP_INTERVAL
+        value: 5   
+      - name: WAIT_AFTER_HOSTS
+        value: 10   
+
+  - name: crapi-web
+    properties:
+      image: crapi.azurecr.io/crapi-web:latest
+      resources:
+        requests:
+          cpu: 0.3
+          memoryInGb: 0.2
+      ports:
+      - protocol: tcp
+        port: 8888
+      - protocol: tcp
+        port: 80
+      environmentVariables:
+      - name: GO_SERVICE
+        value: crapi-community:8087  
+      - name: JAVA_SERVICE
+        value: crapi-identity:8080  
+      - name: PYTHON_SERVICE
+        value: crapi-workshop:8000  
+      - name: WAIT_HOSTS
+        value: crapi-community:8087,crapi-identity:8080,crapi-workshop:8000,mailhog:1025
+      - name: WAIT_HOSTS_TIMEOUT
+        value: 240  
+      - name: WAIT_SLEEP_INTERVAL
+        value: 5   
+
+  - name: postgresdb
+    properties:
+      image: postgres
+      resources:
+        requests:
+          cpu: 0.3
+          memoryInGb: 0.2
+      environmentVariables:
+      - name: POSTGRES_USER
+        value: admin
+      - name: POSTGRES_PASSWORD
+        value: crapisecretpassword
+      - name: POSTGRES_DB
+        value: crapi
+      volumeMounts: 
+      - name: postgresql-data
+        mountPath: /var/lib/postgresql/data/
+        readOnly: false
+
+  - name: mongodb
+    properties:
+      image: mongo
+      resources:
+        requests:
+          cpu: 0.3
+          memoryInGb: 0.2
+      environmentVariables:
+      - name: MONGO_INITDB_ROOT_USERNAME
+        value: admin
+      - name: MONGO_INITDB_ROOT_PASSWORD
+        value: crapisecretpassword
+      volumeMounts: 
+        - name: mongodb-data
+          mountPath: /data/db
+          readOnly: false
+
+  - name: mailhog
+    properties:
+      image: mailhog/mailhog
+      resources:
+        requests:
+          cpu: 0.3
+          memoryInGb: 0.2
+      environmentVariables:
+      - name: MH_MONGO_URI
+        value: admin:crapisecretpassword@mongodb:27017
+      - name: MH_STORAGE
+        value: mongodb
+
+  volumes:
+  - name: postgresql-data
+    emptyDir: {}
+
+  - name: mongodb-data
+    emptyDir: {}
+
+  osType: Linux
+  ipAddress:
+    type: Public
+    ip: "127.0.0.1"
+    ports:
+    - protocol: tcp
+      port: 8888
+    - protocol: tcp
+      port: 80
+
+type: Microsoft.ContainerInstance/containerGroups
