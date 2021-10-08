@@ -25,7 +25,7 @@ stages:
         containerregistrytype: 'Azure Container Registry'
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: sidneymarie116/crapi-identity:$(Build.BuildId)
+        imageName: crapi-identity:$(Build.BuildId)
         includeLatestTag: true
 
     - task: Docker@0
@@ -34,7 +34,7 @@ stages:
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
         action: 'Push an image'
-        imageName: sidneymarie116/crapi-identity:$(Build.BuildId)
+        imageName: crapi-identity:$(Build.BuildId)
         qualifyImageName: true
 
     - task: Docker@0
@@ -44,7 +44,7 @@ stages:
         containerregistrytype: 'Azure Container Registry'
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: sidneymarie116/crapi-community:$(Build.BuildId)
+        imageName: crapi-community:$(Build.BuildId)
         includeLatestTag: true
 
     - task: Docker@0
@@ -53,7 +53,7 @@ stages:
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
         action: 'Push an image'
-        imageName: sidneymarie116/crapi-community:$(Build.BuildId)
+        imageName: crapi-community:$(Build.BuildId)
         qualifyImageName: true
     
     - task: Docker@0
@@ -63,7 +63,7 @@ stages:
         containerregistrytype: 'Azure Container Registry'
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: sidneymarie116/crapi-workshop:$(Build.BuildId)
+        imageName: crapi-workshop:$(Build.BuildId)
         includeLatestTag: true
 
     - task: Docker@0
@@ -72,7 +72,7 @@ stages:
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
         action: 'Push an image'
-        imageName: sidneymarie116/crapi-workshop:$(Build.BuildId)
+        imageName: crapi-workshop:$(Build.BuildId)
         qualifyImageName: true
     
     - task: Docker@0
@@ -82,7 +82,7 @@ stages:
         containerregistrytype: 'Azure Container Registry'
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: sidneymarie116/crapi-web:$(Build.BuildId)
+        imageName: crapi-web:$(Build.BuildId)
         includeLatestTag: true
 
     - task: Docker@0
@@ -91,7 +91,7 @@ stages:
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
         action: 'Push an image'
-        imageName: sidneymarie116/crapi-web:$(Build.BuildId)
+        imageName: crapi-web:$(Build.BuildId)
         qualifyImageName: true
 
     - task: DockerCompose@0
