@@ -97,15 +97,6 @@ stages:
     #     imageName: crapi-web:$(Build.BuildId)
     #     qualifyImageName: true
     #     additionalImageTags: latest
-
-    - task: DockerCompose@0
-      inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        dockerComposeFile: 'deploy/docker/docker-compose.yml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'up -d'
     
     - task: DockerCompose@0
       inputs:
@@ -113,9 +104,19 @@ stages:
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
         dockerComposeFile: 'deploy/docker/docker-compose.yml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'push'
+        action: Push services
         qualifyImageNames: true
-        containerName: crapi
+        projectName: crapi
+        additionalImageTags: $(Build.BuildId)
+
+    # - task: DockerCompose@0
+    #   inputs:
+    #     containerregistrytype: 'Azure Container Registry'
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     dockerComposeFile: 'deploy/docker/docker-compose.yml'
+    #     action: 'Run a Docker Compose command'
+    #     dockerComposeCommand: 'up -d'
+    
 
     
