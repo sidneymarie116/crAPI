@@ -31,7 +31,7 @@ stages:
         azureSubscription: 'AppConsultSandbox-to-Crapi'
         azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
         action: 'Push an image'
-        imageName: sidneymarie116/crapi-community:$(Build.BuildId)
+        imageName: crapi-community:$(Build.BuildId)
         qualifyImageName: true
 
     - task: Docker@2
