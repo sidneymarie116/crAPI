@@ -18,81 +18,81 @@ stages:
     displayName: Build
 
     steps:   
-    - task: Docker@0
-      displayName: Build identity image
-      inputs:
-        dockerFile: 'services/identity/Dockerfile'
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: crapi-identity:$(Build.BuildId)
-        includeLatestTag: true
+    # - task: Docker@0
+    #   displayName: Build identity image
+    #   inputs:
+    #     dockerFile: 'services/identity/Dockerfile'
+    #     containerregistrytype: 'Azure Container Registry'
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     imageName: crapi-identity:$(Build.BuildId)
+    #     includeLatestTag: true
 
-    - task: Docker@0
-      displayName: Push identity image
-      inputs:
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        action: 'Push an image'
-        imageName: crapi-identity:$(Build.BuildId)
-        qualifyImageName: true
+    # - task: Docker@0
+    #   displayName: Push identity image
+    #   inputs:
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     action: 'Push an image'
+    #     imageName: crapi-identity:$(Build.BuildId)
+    #     qualifyImageName: true
 
-    - task: Docker@0
-      displayName: Build community image
-      inputs:
-        dockerFile: 'services/community/Dockerfile'
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: crapi-community:$(Build.BuildId)
-        includeLatestTag: true
+    # - task: Docker@0
+    #   displayName: Build community image
+    #   inputs:
+    #     dockerFile: 'services/community/Dockerfile'
+    #     containerregistrytype: 'Azure Container Registry'
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     imageName: crapi-community:$(Build.BuildId)
+    #     includeLatestTag: true
 
-    - task: Docker@0
-      displayName: Push community image
-      inputs:
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        action: 'Push an image'
-        imageName: crapi-community:$(Build.BuildId)
-        qualifyImageName: true
+    # - task: Docker@0
+    #   displayName: Push community image
+    #   inputs:
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     action: 'Push an image'
+    #     imageName: crapi-community:$(Build.BuildId)
+    #     qualifyImageName: true
     
-    - task: Docker@0
-      displayName: Build workshop image
-      inputs:
-        dockerFile: 'services/workshop/Dockerfile'
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: crapi-workshop:$(Build.BuildId)
-        includeLatestTag: true
+    # - task: Docker@0
+    #   displayName: Build workshop image
+    #   inputs:
+    #     dockerFile: 'services/workshop/Dockerfile'
+    #     containerregistrytype: 'Azure Container Registry'
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     imageName: crapi-workshop:$(Build.BuildId)
+    #     includeLatestTag: true
 
-    - task: Docker@0
-      displayName: Push workshop image
-      inputs:
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        action: 'Push an image'
-        imageName: crapi-workshop:$(Build.BuildId)
-        qualifyImageName: true
+    # - task: Docker@0
+    #   displayName: Push workshop image
+    #   inputs:
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     action: 'Push an image'
+    #     imageName: crapi-workshop:$(Build.BuildId)
+    #     qualifyImageName: true
     
-    - task: Docker@0
-      displayName: Build web image
-      inputs:
-        dockerFile: 'services/web/Dockerfile'
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        imageName: crapi-web:$(Build.BuildId)
-        includeLatestTag: true
+    # - task: Docker@0
+    #   displayName: Build web image
+    #   inputs:
+    #     dockerFile: 'services/web/Dockerfile'
+    #     containerregistrytype: 'Azure Container Registry'
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     imageName: crapi-web:$(Build.BuildId)
+    #     includeLatestTag: true
 
-    - task: Docker@0
-      displayName: Push web image
-      inputs:
-        azureSubscription: 'AppConsultSandbox-to-Crapi'
-        azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
-        action: 'Push an image'
-        imageName: crapi-web:$(Build.BuildId)
-        qualifyImageName: true
+    # - task: Docker@0
+    #   displayName: Push web image
+    #   inputs:
+    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
+    #     azureContainerRegistry: '{"loginServer":"crapi.azurecr.io", "id" : "/subscriptions/8863f50e-9a32-40a0-8fa2-22d245a31dba/resourceGroups/sidney-crapi-rg/providers/Microsoft.ContainerRegistry/registries/crapi"}'
+    #     action: 'Push an image'
+    #     imageName: crapi-web:$(Build.BuildId)
+    #     qualifyImageName: true
 
     - task: DockerCompose@0
       inputs:
@@ -103,8 +103,3 @@ stages:
         action: 'Run a Docker Compose command'
         dockerComposeCommand: 'up -d'
 
-    # - task: AzureWebAppContainer@1
-    #   inputs:
-    #     azureSubscription: 'AppConsultSandbox-to-Crapi'
-    #     appName: 'sidneycrapi'
-    #     containers: 'crapi.azurecr.io/sidneymarie116/crapi:$(Build.BuildId)'
