@@ -5,7 +5,7 @@ properties:
   imageRegistryCredentials:
   - server: crapi.azurecr.io
     username: crapi
-    password: e8dOa4OpdFD/Q9Uxf7F3AMbgq0eGJUmT
+    password: <password>
 
   containers:
   - name: crapi-identity
@@ -221,13 +221,13 @@ properties:
     azureFile:
       sharename: acisharepostgres
       storageAccountName: crapi
-      storageAccountKey: t1jlFrs98Ysv1SHGFQa4XsKnW9djT2Edpk6UawqUTEyPiOg42SLNQ3jWbYUE9+6CzQqzd5BAAPF+zFFJJ0bEYw==
+      storageAccountKey: <key>
 
   - name: mongodb-data
     azureFile:
       sharename: acisharemongo
       storageAccountName: crapi
-      storageAccountKey: t1jlFrs98Ysv1SHGFQa4XsKnW9djT2Edpk6UawqUTEyPiOg42SLNQ3jWbYUE9+6CzQqzd5BAAPF+zFFJJ0bEYw==
+      storageAccountKey: <key>
 
   osType: Linux
   # ipAddress:
