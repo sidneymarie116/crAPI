@@ -18,6 +18,8 @@ steps:
     kubernetesCluster: 'crapi'
     namespace: 'crapi'
     command: 'apply'
-    arguments: '-n crapi -f ../base/rbac'
+    arguments: '-n crapi -f deploy/k8s/base/rbac'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
+
+
