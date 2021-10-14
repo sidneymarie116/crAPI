@@ -22,4 +22,110 @@ steps:
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
 
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/mongodb'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
 
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/postgres'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/mailhog'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/identity'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/community'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/workshop'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/web'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/minikube/mailhog'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/minikube/web'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
