@@ -11,9 +11,13 @@ spec:
   - host: crapi-web.crapi-dns-2b952e50.hcp.southcentralus.azmk8s.io
     http:
       paths:
-      - backend:
-          serviceName: crapi-web
-          servicePort: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: crapi-web
+            port:
+              number: 80
           
  # ports:
  #  - port: 80
