@@ -11,6 +11,7 @@ pool:
 
 steps:
 - task: Kubernetes@1
+  displayName: apply rbac
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -23,6 +24,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply mongodb
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -35,6 +37,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply postgres
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -47,6 +50,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply mailhog
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -59,6 +63,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply identity
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -71,6 +76,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply community
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -83,6 +89,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply workshop
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -95,6 +102,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply web
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -107,6 +115,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply minikube/mailhog
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
@@ -119,6 +128,7 @@ steps:
     containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
+  displayName: apply minikube/web
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
