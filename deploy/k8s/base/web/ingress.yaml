@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: crapi-web
   annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    kubernetes.io/ingress.class: azure/application-gateway
   labels:
     app: crapi-web
 spec:
