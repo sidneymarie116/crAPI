@@ -49,18 +49,18 @@ steps:
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
 
-# - task: Kubernetes@1
-#   displayName: apply mailhog
-#   inputs:
-#     connectionType: 'Azure Resource Manager'
-#     azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
-#     azureResourceGroup: 'sidney-crapi-rg'
-#     kubernetesCluster: 'crapi'
-#     namespace: 'crapi'
-#     command: 'apply'
-#     arguments: '-n crapi -f deploy/k8s/base/mailhog'
-#     secretType: 'dockerRegistry'
-#     containerRegistryType: 'Azure Container Registry'
+- task: Kubernetes@1
+  displayName: apply mailhog
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'AppConsultSandbox-to-Crapi'
+    azureResourceGroup: 'sidney-crapi-rg'
+    kubernetesCluster: 'crapi'
+    namespace: 'crapi'
+    command: 'apply'
+    arguments: '-n crapi -f deploy/k8s/base/mailhog'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
 
 - task: Kubernetes@1
   displayName: apply identity
