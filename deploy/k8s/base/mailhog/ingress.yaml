@@ -1,17 +1,41 @@
-apiVersion: v1
-kind: Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: mailhog-web
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   namespace: crapi
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+  labels:
+    app: crapi-web
 spec:
-  ports:
-  - name: web
-    port: 8025
-    nodePort: 30025
-    protocol: TCP
-  selector:
-    app: mailhog
-  sessionAffinity: None
-  type: LoadBalancer
+  rules:
+  - host: mailhog-web.crapi-dns-2b952e50.hcp.southcentralus.azmk8s.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mailhog-web
+            port:
+              number: 80
+            nodePort: 30025
+
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: mailhog-web
+#   annotations:
+#     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+#   namespace: crapi
+# spec:
+#   ports:
+#   - name: web
+#     port: 8025
+#     nodePort: 30025
+#     protocol: TCP
+#   selector:
+#     app: mailhog
+#   sessionAffinity: None
+#   type: LoadBalancer
