@@ -2,13 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: crapi-web
+  namespace: crapi
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing
   labels:
     app: crapi-web
 spec:
   rules:
-  - host: crapi-web.crapi-dns-2b952e50.hcp.southcentralus.azmk8s.io
+  - host: crapi-web.9fb2d620bbe449fc880a.southcentralus.aksapp.io
     http:
       paths:
       - path: /
